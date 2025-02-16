@@ -1,5 +1,7 @@
 package com.devsuperior.aula.dto;
 
+import com.devsuperior.aula.entities.Person;
+
 public class PersonDepartmentDTO {
 	
 	private Long id;
@@ -17,6 +19,16 @@ public class PersonDepartmentDTO {
 		this.department = department;		
 	}
 
+	//7-
+	//Copio da entidade para o DTO
+	public PersonDepartmentDTO(Person entity) {
+		id = entity.getId();
+		name = entity.getName();
+		salary = entity.getSalary();
+		department = new DepartmentDTO(entity.getDepartment());
+	}
+	
+	
 	//Apenas Getters
 	public Long getId() {
 		return id;
