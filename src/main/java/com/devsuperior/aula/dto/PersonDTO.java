@@ -2,32 +2,30 @@ package com.devsuperior.aula.dto;
 
 import com.devsuperior.aula.entities.Person;
 
-public class PersonDepartmentDTO {
+public class PersonDTO {
 	
 	private Long id;
 	private String name;
 	private Double salary;
+	private Long departmentId;
 	
 	
-	private DepartmentDTO department;
-
-	public PersonDepartmentDTO(Long id, String name, Double salary, DepartmentDTO department) {
+	public PersonDTO(Long id, String name, Double salary, Long departmentId) {
 		this.id = id;
 		this.name = name;
 		this.salary = salary;
-		this.department = department;		
+		this.departmentId = departmentId;
 	}
 	
 	//Copio da entidade para o DTO
-	public PersonDepartmentDTO(Person entity) {
+	public PersonDTO(Person entity) {
 		id = entity.getId();
 		name = entity.getName();
 		salary = entity.getSalary();
-		department = new DepartmentDTO(entity.getDepartment());
+		departmentId = entity.getDepartment().getId();
 	}
 	
-	
-	//Apenas Getters
+
 	public Long getId() {
 		return id;
 	}
@@ -40,9 +38,9 @@ public class PersonDepartmentDTO {
 		return salary;
 	}
 
-	public DepartmentDTO getDepartment() {
-		return department;
-	}	
+	public Long getDepartmentId() {
+		return departmentId;
+	}
 	
 	
 

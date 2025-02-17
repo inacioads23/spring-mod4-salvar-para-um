@@ -3,13 +3,14 @@ package com.devsuperior.aula.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.devsuperior.aula.dto.PersonDTO;
 import com.devsuperior.aula.dto.PersonDepartmentDTO;
 import com.devsuperior.aula.entities.Department;
 import com.devsuperior.aula.entities.Person;
 import com.devsuperior.aula.repositories.DepartmentRepository;
 import com.devsuperior.aula.repositories.PersonRepository;
 
-//4- criada "class" abaixo
+
 @Service
 public class PersonService {
 	
@@ -22,7 +23,7 @@ public class PersonService {
 	public PersonDepartmentDTO insert(PersonDepartmentDTO dto) {
 	
 	Person entity = new Person(); //criei/ instancionei a entidade Person	
-	entity.setName(dto.getName()); //6- continuação
+	entity.setName(dto.getName());
 	entity.setSalary(dto.getSalary());
 	
 	//Traz "id e department"
@@ -37,4 +38,22 @@ public class PersonService {
 	entity = repository.save(entity);
 	return new PersonDepartmentDTO(entity);
 	}
+	
+	
+	public PersonDTO insert(PersonDTO dto) {
+		
+		Person entity = new Person(); //criei/ instancionei a entidade Person	
+		entity.setName(dto.getName()); 
+		entity.setSalary(dto.getSalary());		
+		
+		//Department dept = departmentRepository.getReferenceById(dto.getDepartmentId());		
+		
+		Department dept = new Department(); //criei/ instancionei a entidade Department
+		dept.setId(dto.getDepartmentId());
+		
+		entity.setDepartment(dept); //vincula Department com Person
+		
+		entity = repository.save(entity);
+		return new PersonDTO(entity);
+		}
 }
