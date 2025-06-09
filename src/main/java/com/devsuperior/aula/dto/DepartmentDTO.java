@@ -9,7 +9,6 @@ public class DepartmentDTO {
 	
 			
 	public DepartmentDTO(Long id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}

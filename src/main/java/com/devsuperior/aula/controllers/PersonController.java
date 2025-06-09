@@ -16,14 +16,14 @@ import com.devsuperior.aula.services.PersonService;
 
 //5- criada "class" abaixo
 @RestController //define como controller
-@RequestMapping(value = "/people") //endpoint/ rota/ caminho
+@RequestMapping(value = "/people") //endpoint/ rota/ caminho 
 public class PersonController {
 	
-	@Autowired //injetando/ instanciando dependência
+	@Autowired //injetando/ instanciando dependência // MUDAR PARA CONSTRUTOR
 	private PersonService service;
 	
 	//"@RequestBody", define como corpo da requisição
-	//@PostMapping	
+	@PostMapping	
 	public ResponseEntity<PersonDepartmentDTO> insert(@RequestBody PersonDepartmentDTO dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
@@ -31,7 +31,7 @@ public class PersonController {
 	}
 	
 	//"@RequestBody", define como corpo da requisição
-	@PostMapping	
+	//@PostMapping
 	public ResponseEntity<PersonDTO> insert(@RequestBody PersonDTO dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();

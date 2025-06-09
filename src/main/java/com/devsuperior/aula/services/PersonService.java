@@ -22,17 +22,18 @@ public class PersonService {
 
 	public PersonDepartmentDTO insert(PersonDepartmentDTO dto) {
 	
-	Person entity = new Person(); //criei/ instancionei a entidade Person	
-	entity.setName(dto.getName());
+	Person entity = new Person(); //criei/ instanciei a entidade Person	
+	entity.setName(dto.getName()); // copia do entity para o dto
 	entity.setSalary(dto.getSalary());
 	
-	//Traz "id e department"
-	Department dept = departmentRepository.getReferenceById(dto.getDepartment().getId());
+	/*
+	//Traz apenas "id"
+	Department dept = new Department(); //criei/ instanciei a entidade Department
+	dept.setId(dto.getDepartment().getId());
+	*/	
 	
-	//Trazia apenas "id"
-	//Department dept = new Department(); //criei/ instancionei a entidade Department
-	//dept.setId(dto.getDepartment().getId()); 
-	
+	//Traz "id e department" - o objeto inteiro
+	Department dept = departmentRepository.getReferenceById(dto.getDepartment().getId()); // lazy
 	entity.setDepartment(dept); //vincula Department com Person
 	
 	entity = repository.save(entity);
@@ -42,13 +43,13 @@ public class PersonService {
 	
 	public PersonDTO insert(PersonDTO dto) {
 		
-		Person entity = new Person(); //criei/ instancionei a entidade Person	
+		Person entity = new Person(); // criei/ instanciei a entidade Person	
 		entity.setName(dto.getName()); 
 		entity.setSalary(dto.getSalary());		
 		
 		//Department dept = departmentRepository.getReferenceById(dto.getDepartmentId());		
 		
-		Department dept = new Department(); //criei/ instancionei a entidade Department
+		Department dept = new Department(); //criei/ instanciei a entidade Department
 		dept.setId(dto.getDepartmentId());
 		
 		entity.setDepartment(dept); //vincula Department com Person
