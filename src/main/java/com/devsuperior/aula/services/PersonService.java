@@ -10,6 +10,8 @@ import com.devsuperior.aula.entities.Person;
 import com.devsuperior.aula.repositories.DepartmentRepository;
 import com.devsuperior.aula.repositories.PersonRepository;
 
+import jakarta.transaction.Transactional;
+
 
 @Service
 public class PersonService {
@@ -20,6 +22,7 @@ public class PersonService {
 	@Autowired
 	private DepartmentRepository departmentRepository;
 
+	@Transactional
 	public PersonDepartmentDTO insert(PersonDepartmentDTO dto) {
 	
 	Person entity = new Person(); //criei/ instanciei a entidade Person	
@@ -40,7 +43,7 @@ public class PersonService {
 	return new PersonDepartmentDTO(entity);
 	}
 	
-	
+	@Transactional
 	public PersonDTO insert(PersonDTO dto) {
 		
 		Person entity = new Person(); // criei/ instanciei a entidade Person	

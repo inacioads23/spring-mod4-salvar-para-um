@@ -22,7 +22,7 @@ public class PersonDTO {
 		id = entity.getId();
 		name = entity.getName();
 		salary = entity.getSalary();
-		departmentId = entity.getDepartment().getId();
+		departmentId = entity.getDepartment().getId(); // pego apenas o id do "Objeto Departament"
 	}
 	
 
